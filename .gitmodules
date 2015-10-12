@@ -1,0 +1,6 @@
+[submodule "cloudfoundry-deploy"]
+	path = cloudfoundry-deploy
+	url = git@github.com:ThoughtWorks-AELab/cloudfoundry-deploy.git
+[submodule "ci"]
+	path = ci
+	url = git@github.com:ThoughtWorks-AELab/ci.git
