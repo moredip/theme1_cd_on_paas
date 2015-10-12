@@ -1,0 +1,14 @@
+defaults: &defaults
+  app_suffix: web-app
+  org: TW-org
+  dependency_service_app_suffixes:
+    - catalog
+    - deals
+
+test:
+  <<: *defaults
+  space: test
+
+production:
+  <<: *defaults
+  space: production

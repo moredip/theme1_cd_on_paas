@@ -1,0 +1,10 @@
+test:
+  app_suffix: catalog
+  org: TW-org
+  space: test
+  is_service: true
+production:
+  app_suffix: catalog
+  org: TW-org
+  space: production
+  is_service: true

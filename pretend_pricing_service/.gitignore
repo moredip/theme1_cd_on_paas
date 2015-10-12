@@ -1,0 +1,9 @@
+.bundle
+.cf
+vendor/bundle
+spec/reports
+
+pricing.db
+
+*.swp
+*.swo

@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %title A Pretend Web Store
+  %body
+    %section.deals
+      %h1 Some Deals
+      %ul
+      - deals.each do |deal|
+        %li.deal
+          = "#{deal.sku}: $#{deal.price}"
+        
+    %section.products
+      %h1 
+        The product page for:  
+        = product.name

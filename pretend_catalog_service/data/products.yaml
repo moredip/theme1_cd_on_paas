@@ -1,0 +1,12 @@
+---
+sweater:
+  name: Wooly Sweater
+  description: Finest angora wool, nice and cozy. Vibrant dyed.
+
+jumpsuit:
+  name: Vintage Jumpsuit
+  description: The season's cutest jumpsuit.
+
+tshirt:
+  name: Tri-blend Tee
+  description: Lightweight, high quality tshirt. A basic staple in your wardrobe.
