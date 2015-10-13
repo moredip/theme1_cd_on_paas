@@ -1,14 +1,12 @@
+defaults: &defaults
+  app_suffix: deals
+  org: TW-org
+  is_service: true
+  dependency_service_app_suffixes:
+    - pricing
 test:
-  app_suffix: deals
-  org: TW-org
+  <<: *defaults
   space: test
-  is_service: true
-  dependency_service_app_suffixes:
-    - pricing
 production:
-  app_suffix: deals
-  org: TW-org
+  <<: *defaults
   space: production
-  is_service: true
-  dependency_service_app_suffixes:
-    - pricing
