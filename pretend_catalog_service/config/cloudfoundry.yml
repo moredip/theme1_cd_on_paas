@@ -1,10 +1,9 @@
+defaults: &defaults
+  app_suffix: catalog
+  org: TW-org
 test:
-  app_suffix: catalog
-  org: TW-org
+  <<: *defaults
   space: test
-  is_service: true
 production:
-  app_suffix: catalog
-  org: TW-org
+  <<: *defaults
   space: production
-  is_service: true
