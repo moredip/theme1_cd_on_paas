@@ -3,16 +3,17 @@ db:
 
 pricing:
   build: pretend_pricing_service
-  links: 
-    - db
+  ports: [80]
+  links: [db]
 
 deals:
   build: pretend_deals_service
-  links: 
-    - pricing
+  ports: [80]
+  links: [pricing]
 
 catalog:
   build: pretend_catalog_service
+  ports: [80]
 
 web:
   build: pretend_web_app
@@ -22,3 +23,16 @@ web:
     - deals
     - catalog
 
+
+consul:
+  image: gliderlabs/consul-server:latest
+  command: -bootstrap
+  net: host
+
+registrator:
+  image: gliderlabs/registrator:latest
+  command: consul://localhost:8500
+  net: host
+  volumes:
+  - "/var/run/docker.sock:/tmp/docker.sock"
+  
