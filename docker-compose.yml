@@ -1,0 +1,24 @@
+db:
+  image: postgres
+
+pricing:
+  build: pretend_pricing_service
+  links: 
+    - db
+
+deals:
+  build: pretend_deals_service
+  links: 
+    - pricing
+
+catalog:
+  build: pretend_catalog_service
+
+web:
+  build: pretend_web_app
+  ports:
+    - "8081:80"
+  links:
+    - deals
+    - catalog
+
