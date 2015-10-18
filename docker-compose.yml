@@ -23,6 +23,44 @@ web:
     - deals
     - catalog
 
+logspout:
+  image: organizeme/logspout-logstash:latest
+  environment:
+    LOGSPOUT: ignore
+    ROUTE_URIS: logstash://logstash:5000
+  volumes:
+    - "/var/run/docker.sock:/tmp/docker.sock"
+  links: 
+    - logstash
+  ports: [8000]
+
+logstash:
+  image: logstash:2.0.0
+  ports: ["5000/udp"]
+  environment:
+    LOGSPOUT: ignore
+  volumes:
+    - "${PWD}/elk:/config-dir"
+  command:
+    logstash -f /config-dir/logstash.conf
+  links:
+    - elasticsearch
+
+elasticsearch:
+  image: elasticsearch:2.0.0
+  command:
+    - "elasticsearch"
+    - "--node.name"
+    - "JimBob"
+    - "--network.host"
+    - "_non_loopback_"
+
+kibana:
+  image: kibana:4.2.0
+  ports: ["5601:5601"]
+  links:
+    - elasticsearch
+
 
 consul:
   image: gliderlabs/consul-server:latest
@@ -34,5 +72,5 @@ registrator:
   command: consul://localhost:8500
   net: host
   volumes:
-  - "/var/run/docker.sock:/tmp/docker.sock"
+    - "/var/run/docker.sock:/tmp/docker.sock"
   
