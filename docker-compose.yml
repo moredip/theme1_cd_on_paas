@@ -36,7 +36,9 @@ logspout:
 
 logstash:
   image: logstash:2.0.0
-  ports: ["5000/udp"]
+  ports: 
+    - "5000/udp"
+    - "5000/tcp"
   environment:
     LOGSPOUT: ignore
   volumes:
@@ -50,8 +52,6 @@ elasticsearch:
   image: elasticsearch:2.0.0
   command:
     - "elasticsearch"
-    - "--node.name"
-    - "JimBob"
     - "--network.host"
     - "_non_loopback_"
 
