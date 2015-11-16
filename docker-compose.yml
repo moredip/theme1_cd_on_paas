@@ -17,8 +17,7 @@ catalog:
 
 web:
   build: pretend_web_app
-  ports:
-    - "8081:80"
+  ports: ["8081:80"]
   links:
     - deals
     - catalog
@@ -30,8 +29,8 @@ consul:
   net: host
 
 registrator:
-  image: gliderlabs/registrator:latest
-  command: consul://localhost:8500
+  image: gliderlabs/registrator:master
+  command: "-internal -retry-interval 500 -retry-attempts 10 consul://localhost:8500"
   net: host
   volumes:
   - "/var/run/docker.sock:/tmp/docker.sock"
