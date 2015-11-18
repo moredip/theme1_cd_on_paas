@@ -5,7 +5,7 @@ EXPOSE 80
 
 ENV RACK_ENV                  production
 ENV SERVICE_NAME              web-app
-ENV DEALS_SERVICE_BASE_URL    http://deals/
-ENV CATALOG_SERVICE_BASE_URL  http://catalog/
+ENV DEALS_SERVICE_BASE_URL    http://deals.service.consul/
+ENV CATALOG_SERVICE_BASE_URL  http://catalog.service.consul/
 
 CMD ["puma", "-C", "puma.rb"]

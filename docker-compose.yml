@@ -4,34 +4,33 @@ db:
 pricing:
   build: pretend_pricing_service
   ports: [80]
-  links: [db]
+  dns: &dns
+    - 172.17.0.1 # docker host bridge IP; connects to consul-server running on host net
+    - 8.8.8.8
 
 deals:
   build: pretend_deals_service
   ports: [80]
-  links: [pricing]
+  dns: *dns
 
 catalog:
   build: pretend_catalog_service
-  ports: [80]
+  dns: *dns
 
 web:
   build: pretend_web_app
   ports: ["8081:80"]
-  links:
-    - deals
-    - catalog
-
+  dns: *dns
 
 consul:
-  image: gliderlabs/consul-server:latest
-  command: -bootstrap
+  build: consul-server
   net: host
+  command: -bootstrap
 
 registrator:
   image: gliderlabs/registrator:master
   command: "-internal -retry-interval 500 -retry-attempts 10 consul://localhost:8500"
-  net: host
   volumes:
   - "/var/run/docker.sock:/tmp/docker.sock"
+  net: host
   

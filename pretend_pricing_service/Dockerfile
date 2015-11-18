@@ -5,6 +5,6 @@ EXPOSE 80
 
 ENV RACK_ENV      production
 ENV SERVICE_NAME  pricing
-ENV DATABASE_URL  postgres://postgres@db/postgres
+ENV DATABASE_URL  postgres://postgres@postgres.service.consul/postgres
 
 CMD ["puma", "-C", "puma.rb"]
